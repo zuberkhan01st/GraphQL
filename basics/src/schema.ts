@@ -2,13 +2,17 @@ const typeDefs: string = `#graphql
 	type Game{
         id: ID!,
         title : String!,
-        platform: [String!]!
+        platform: [String!]!,
+        authors: [Author!]!,
+        reviews: [Review!],
     }
 
     type Review{
         id: ID!,
         rating: Int!,
         content: String!,
+        game: Game!,
+        author: Author!,
 
     }
 
@@ -16,6 +20,8 @@ const typeDefs: string = `#graphql
         id: ID!,
         name: String!,
         verified: Boolean!,
+        reviews: [Review!]!,
+        games: [Game!],
     }
 
     type Query{
