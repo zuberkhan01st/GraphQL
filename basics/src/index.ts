@@ -49,8 +49,36 @@ const resolvers = {
         games(parent:any){
             return db.games.find((g)=>g.id === parent.game_id)
         }
+    },
+    Mutation:{
+        addGame(_: any, arg: {game: {title:string, platform:string[], authorIds:string[]}}){
+            const newGame = {
+                ...arg.game,
+                id: String(db.games.length +1),
+               
+            }
+            db.games.push(newGame)
+            return newGame
+        },
+
+        updateGame(_:any, args:{id:string, game:{title?:string, platform?:string[], authorIds?:string[]}}){
+            const gameIndex = db.games.findIndex((g)=> g.id === args.id)
+            if(gameIndex === -1){
+                return null
+            }
+            const existingGame = db.games[gameIndex]!
+            const updatedGame = {
+                id: existingGame.id,
+                title: args.game.title ?? existingGame.title,
+                platform: args.game.platform ?? existingGame.platform,
+            }
+            
+            db.games[gameIndex] = updatedGame
+            return updatedGame
+            }
+        }
     }
-}
+
 
 const server = new ApolloServer({
     typeDefs,

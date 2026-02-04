@@ -32,6 +32,22 @@ const typeDefs: string = `#graphql
         authors : [Author!]!,
         author(id: ID!): Author,
     }
+    type Mutation{
+        addGame(game: NewGameInput!): Game!,
+        updateGame(id: ID!, game: updateGameInput!): Game!,
+        deleteGame(id:ID!): Boolean!,
+    }
+
+    input NewGameInput{
+        title : String!,
+        platform: [String!]!,
+        authorIds: [ID!],
+    }
+    input updateGameInput{
+        title : String,
+        platform: [String!],
+        authorIds: [ID!],
+    }
 
 `
 
