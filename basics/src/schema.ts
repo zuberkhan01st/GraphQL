@@ -3,7 +3,7 @@ const typeDefs: string = `#graphql
         id: ID!,
         title : String!,
         platform: [String!]!,
-        authors: [Author!]!,
+        authors: [Author!],
         reviews: [Review!],
     }
 
@@ -20,8 +20,8 @@ const typeDefs: string = `#graphql
         id: ID!,
         name: String!,
         verified: Boolean!,
-        reviews: [Review!]!,
-        games: [Game!],
+        reviews: [Review!],
+        games: [Game!]!,
     }
 
     type Query{
