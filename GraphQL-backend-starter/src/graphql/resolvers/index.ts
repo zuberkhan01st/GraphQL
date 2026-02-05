@@ -3,6 +3,10 @@ import { cartResolvers } from "./cart";
 
 export const resolvers = {
    
-    ...userResolvers,
-    ...cartResolvers
+  Query:  { ...userResolvers.Query,
+    ...cartResolvers.Query},
+
+    User: userResolvers.User,
+    CartItem: cartResolvers.CartItem,   
+
 }
