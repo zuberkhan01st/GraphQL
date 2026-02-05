@@ -75,7 +75,16 @@ const resolvers = {
             
             db.games[gameIndex] = updatedGame
             return updatedGame
+            },
+        
+        deleteGame(_:any, args:{id:string}){
+            const gameIndex = db.games.findIndex((g)=> g.id === args.id)
+            if(gameIndex === -1){
+                return false
             }
+            db.games.splice(gameIndex, 1)
+            return true
+        }
         }
     }
 
