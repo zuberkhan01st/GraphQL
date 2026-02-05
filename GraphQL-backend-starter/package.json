@@ -2,6 +2,13 @@
   "name": "graphql-backend-starter",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "run":"bun run --hot index.ts",
+    "start": "bun run index.ts",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "typecheck": "tsc --noEmit"
+  },
   "private": true,
   "devDependencies": {
     "@types/bun": "latest"
