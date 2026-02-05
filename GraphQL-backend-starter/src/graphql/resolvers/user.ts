@@ -8,7 +8,15 @@ export const userResolvers = {
         user: (_: any, args: {id: string}) => UserService.getUserById(args.id)
     },
     User:{
-        cart: (parent: {id: string}): CartItem[] => cartService.getCartItemsByUserId(parent.id)
+        cart: async (parent: {id: string}): Promise<CartItem[]> => {
+            const items = await cartService.getCartItemsByUserId(parent.id);
+            return items.map(item => ({
+                id: item._id.toString(),
+                productId: item.productId,
+                quantity: item.quantity,
+                userId: item.userId.toString()
+            }));
+        }
     }
     
 }

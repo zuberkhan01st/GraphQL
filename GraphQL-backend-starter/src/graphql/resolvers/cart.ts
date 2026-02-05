@@ -12,7 +12,14 @@ export const cartResolvers = {
     },
 
     CartItem :{
-        user: (parent: CartItem): User => UserService.getUserById(parent.userId )!,
+        user: async (parent: CartItem): Promise<User> => {
+            const dbUser = await UserService.getUserById(parent.userId);
+            return {
+                id: dbUser!._id.toString(),
+                name: dbUser!.name,
+                email: dbUser!.email
+            };
+        },
         
     }
 
